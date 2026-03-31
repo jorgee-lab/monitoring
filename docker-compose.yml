@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - /c/docker/monitoring/prometheus:/etc/prometheus
+    networks:
+      - monitoring_net
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring_net
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring_net
+  
+  blackbox:
+    image: prom/blackbox-exporter:latest
+    container_name: blackbox
+    ports:
+      - "9115:9115"
+    networks:
+      - monitoring_net
+    restart: unless-stopped
+
+volumes:
+  grafana_data:
+
+networks:
+  monitoring_net:
+    external: true
