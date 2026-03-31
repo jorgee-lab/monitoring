@@ -102,25 +102,6 @@ docker logs blackbox
 
 ---
 
-# 📊 Métricas utilizadas
-
-## Disponibilidad
-```
-probe_success{job="nginx-http"}
-```
-
-## Latencia
-```
-probe_duration_seconds{job="nginx-http"}
-```
-
-## Código HTTP
-```
-probe_http_status_code{job="nginx-http"}
-```
-
----
-
 # 📈 Grafana
 
 ## Data Source
@@ -132,6 +113,38 @@ http://prometheus:9090
 ```
 
 ---
+
+# 📊 Métricas utilizadas
+
+Nota: las metricas y dashboard deben ser configuradas y agregadas en grafana.
+
+## Node Exporter
+
+### Recursos de hardware
+```
+Importar en grafana dashboard "1860"
+```
+
+## Nginx-http
+
+### Disponibilidad
+```
+probe_success{job="nginx-http"}
+```
+
+### Latencia
+```
+probe_duration_seconds{job="nginx-http"}
+```
+
+### Código HTTP
+```
+probe_http_status_code{job="nginx-http"}
+```
+
+---
+
+
 
 ## Panel básico
 

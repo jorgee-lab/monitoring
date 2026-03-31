@@ -7,7 +7,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - /c/docker/monitoring/prometheus:/etc/prometheus
+      - ./prometheus:/etc/prometheus
     networks:
       - monitoring_net
 
